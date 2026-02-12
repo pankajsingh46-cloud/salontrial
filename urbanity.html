@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Urbanity Salon | Luxury Salon Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f1d592;
+            --obsidian: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f1d592 100%);
+            --ease-premium: cubic-bezier(0.65, 0, 0.35, 1);
+            --transition-speed: 0.5s;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--obsidian);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header { 
+            text-align: center; 
+            padding: 5rem 1.5rem 3rem; 
+            animation: heroFade 1.2s var(--ease-premium);
+        }
+
+        .salon-name { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.8rem; 
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.2rem;
+        }
+
+        .tagline { 
+            font-family: 'Cinzel', serif; 
+            font-size: 0.8rem; 
+            color: var(--gold-light); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            opacity: 0.8;
+        }
+
+        .header-divider { 
+            width: 40px; 
+            height: 2px; 
+            background: var(--gold-primary); 
+            margin: 2rem auto; 
+        }
+
+        main { max-width: 650px; margin: 0 auto; padding: 0 20px 2rem; }
+
+        /* --- Category Styling --- */
+        .category { 
+            margin-bottom: 1rem; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            background: var(--glass-bg); 
+            border: 1px solid var(--glass-border);
+            transition: all var(--transition-speed) var(--ease-premium);
+        }
+
+        .category.active {
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(1.02);
+        }
+
+        .category-header {
+            position: relative;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(40%) brightness(0.4);
+            z-index: 1;
+            transition: transform 1.2s var(--ease-premium);
+            background-color: #222;
+        }
+
+        /* Category Background Images */
+        .cat-hair .category-header::before { background-image: url('images/haircut.png'); }
+        .cat-treatments .category-header::before { background-image: url('images/hairtreat.png'); }
+        .cat-mehndi .category-header::before { background-image: url('images/design.png'); }
+        .cat-facial .category-header::before { background-image: url('images/skin.png'); }
+        .cat-detan .category-header::before { background-image: url('images/detan.png'); }
+        .cat-waxing .category-header::before { background-image: url('images/waxing.png'); }
+        .cat-manicure .category-header::before { background-image: url('images/pedicure.png'); }
+        .cat-threading .category-header::before { background-image: url('images/treading.png'); }
+
+        .category-title {
+            position: relative;
+            z-index: 3;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            background-color: rgba(15, 15, 15, 0.98);
+            transition: max-height var(--transition-speed) var(--ease-premium);
+        }
+
+        .service-list { list-style: none; padding: 0.5rem 0; }
+        
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .service-name { font-weight: 400; font-size: 0.95rem; }
+        .service-price { color: var(--gold-light); font-weight: 600; }
+
+        .badge-popular {
+            font-size: 0.6rem;
+            background: var(--accent-gradient);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+            font-weight: 700;
+        }
+
+        /* --- Rate Us Section --- */
+        .rate-us-section {
+            max-width: 650px;
+            margin: 3rem auto 5rem;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .rate-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--gold-primary);
+            border-radius: 24px;
+            padding: 3rem 1.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .btn-rate {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: #000;
+            text-decoration: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-rate:active { transform: scale(0.95); }
+
+        footer { text-align: center; padding-bottom: 5rem; color: var(--text-muted); font-size: 0.8rem; opacity: 0.7; }
+
+        @keyframes heroFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="salon-name">Urbanity Salon</h1>
+        <p class="tagline">The Art of Luxury Grooming</p>
+        <div class="header-divider"></div>
+    </header>
+
+    <main>
+        <section class="category cat-hair">
+            <div class="category-header"><h2 class="category-title">Hair & Styling</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Straight Hair Cut</span><span class="service-price">₹100</span></li>
+                    <li class="service-item"><span>Step Hair Cut <span class="badge-popular">Trending</span></span><span class="service-price">₹300</span></li>
+                    <li class="service-item"><span>Hair Wash (L’Oréal)</span><span class="service-price">₹100</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-treatments">
+            <div class="category-header"><h2 class="category-title">Treatments & Color</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Perm. Straightening</span><span class="service-price">₹4,000</span></li>
+                    <li class="service-item"><span>Hair Smoothing</span><span class="service-price">₹3,500</span></li>
+                    <li class="service-item"><span>Hair Spa (L’Oréal)</span><span class="service-price">₹800</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-mehndi">
+            <div class="category-header"><h2 class="category-title">Mehndi Art</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Mehndi (Shahnaz)</span><span class="service-price">₹300</span></li>
+                    <li class="service-item"><span>Mehndi (Nupur)</span><span class="service-price">₹250</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-facial">
+            <div class="category-header"><h2 class="category-title">Facial & Skin</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Facial (Shahnaz) <span class="badge-popular">Top Pick</span></span><span class="service-price">₹800</span></li>
+                    <li class="service-item"><span>Fruit Facial (VLCC)</span><span class="service-price">₹600</span></li>
+                    <li class="service-item"><span>Facial (Cheryl’s)</span><span class="service-price">₹600</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-detan">
+            <div class="category-header"><h2 class="category-title">De-Tan Care</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>De-Tan (Face)</span><span class="service-price">₹150</span></li>
+                    <li class="service-item"><span>De-Tan (Body)</span><span class="service-price">₹650</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-waxing">
+            <div class="category-header"><h2 class="category-title">Waxing</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Full Hand</span><span class="service-price">₹250</span></li>
+                    <li class="service-item"><span>Full Leg Waxing</span><span class="service-price">₹450</span></li>
+                    <li class="service-item"><span>Face Waxing</span><span class="service-price">₹50</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-manicure">
+            <div class="category-header"><h2 class="category-title">Hands & Feet</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Manicure (VLCC)</span><span class="service-price">₹350</span></li>
+                    <li class="service-item"><span>Pedicure (VLCC)</span><span class="service-price">₹450</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="category cat-threading">
+            <div class="category-header"><h2 class="category-title">Threading & Massage</h2></div>
+            <div class="category-content">
+                <ul class="service-list">
+                    <li class="service-item"><span>Eyebrows</span><span class="service-price">₹50</span></li>
+                    <li class="service-item"><span>Body Massage <span class="badge-popular">Relax</span></span><span class="service-price">₹1,000</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <section class="rate-us-section">
+        <div class="rate-card">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 0.5rem;">Loved Urbanity Salon?</h3>
+            <div style="color: var(--gold-primary); font-size: 1.4rem; margin-bottom: 1.5rem;">★★★★★</div>
+            
+            <a href="https://search.google.com/local/writereview?placeid=ChIJqx5Jt3hRGzkRSkv4rZbvSmI" target="_blank" class="btn-rate">
+                Rate Us on Google
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Urbanity Salon | Sidhpur, Dharamshala</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const category = header.parentElement;
+                const content = category.querySelector('.category-content');
+                const isOpen = category.classList.contains('active');
+
+                document.querySelectorAll('.category').forEach(cat => {
+                    cat.classList.remove('active');
+                    cat.querySelector('.category-content').style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    category.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
