@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Divine Beauty | Luxury Salon Menu</title>
+    <title>Studio Six Unisex Salon | Luxury Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -16,8 +16,6 @@
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
             --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f1d592 100%);
-            
-            /* Enhanced Easing for Smooth Animations */
             --ease-premium: cubic-bezier(0.65, 0, 0.35, 1);
             --transition-speed: 0.5s;
         }
@@ -44,7 +42,7 @@
 
         .salon-name { 
             font-family: 'Playfair Display', serif; 
-            font-size: 2.5rem; 
+            font-size: 2.8rem; 
             font-weight: 700;
             letter-spacing: -1px;
             background: var(--accent-gradient);
@@ -67,12 +65,11 @@
             height: 2px; 
             background: var(--gold-primary); 
             margin: 2rem auto; 
-            position: relative;
         }
 
-        main { max-width: 650px; margin: 0 auto; padding: 0 20px 6rem; }
+        main { max-width: 650px; margin: 0 auto; padding: 0 20px 2rem; }
 
-        /* --- Category & Accordion Styling --- */
+        /* --- Category Styling --- */
         .category { 
             margin-bottom: 1rem; 
             border-radius: 16px; 
@@ -82,16 +79,10 @@
             transition: all var(--transition-speed) var(--ease-premium);
         }
 
-        .category:hover {
-            border-color: rgba(212, 175, 55, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .category.active {
             border-color: var(--gold-primary);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             transform: scale(1.02);
-            z-index: 10;
         }
 
         .category-header {
@@ -110,12 +101,12 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
+            filter: grayscale(40%) brightness(0.5);
             z-index: 1;
             transition: transform 1.2s var(--ease-premium);
-            filter: grayscale(30%) brightness(0.6);
         }
 
-        /* Unique Image Placeholders - Grounded in User Files */
+        /* Category Images (Replace with your file names) */
         .cat-hair .category-header::before { background-image: url('images/haircut.png'); }
         .cat-treatments .category-header::before { background-image: url('images/hairtreat.png'); }
         .cat-mehndi .category-header::before { background-image: url('images/design.png'); }
@@ -127,14 +118,6 @@
 
         .category:hover .category-header::before { transform: scale(1.1); }
 
-        .category-header::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(10,10,10,0.8), transparent);
-            z-index: 2;
-        }
-
         .category-title {
             position: relative;
             z-index: 3;
@@ -143,20 +126,14 @@
             font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: letter-spacing 0.5s var(--ease-premium);
         }
-        .category:hover .category-title { letter-spacing: 5px; }
 
-        /* --- Service Row Styling --- */
         .category-content {
             max-height: 0;
             overflow: hidden;
             background-color: rgba(15, 15, 15, 0.98);
-            transition: max-height var(--transition-speed) var(--ease-premium), opacity 0.4s ease;
-            opacity: 0;
+            transition: max-height var(--transition-speed) var(--ease-premium);
         }
-
-        .category.active .category-content { opacity: 1; }
 
         .service-list { list-style: none; padding: 0.5rem 0; }
         
@@ -166,49 +143,83 @@
             align-items: center;
             padding: 1.1rem 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            transition: background 0.3s ease;
         }
 
-        .service-item:hover { background: rgba(212, 175, 55, 0.04); }
-        .service-item:last-child { border-bottom: none; }
-
-        .service-name { font-weight: 400; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
-        .service-price { color: var(--gold-light); font-weight: 600; font-size: 1rem; }
+        .service-name { font-weight: 400; font-size: 0.95rem; }
+        .service-price { color: var(--gold-light); font-weight: 600; }
 
         .badge-popular {
             font-size: 0.6rem;
             background: var(--accent-gradient);
-            color: var(--obsidian);
+            color: #000;
             padding: 2px 8px;
             border-radius: 20px;
-            text-transform: uppercase;
+            margin-left: 8px;
             font-weight: 700;
         }
 
-        footer { 
-            text-align: center; 
-            padding: 5rem 2rem; 
-            font-size: 0.75rem; 
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            opacity: 0.6;
+        /* --- Rate Us Button Styling --- */
+        .rate-us-container {
+            max-width: 650px;
+            margin: 3rem auto 5rem;
+            padding: 0 20px;
+            text-align: center;
         }
+
+        .rate-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--gold-primary);
+            border-radius: 24px;
+            padding: 3rem 1.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .rate-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 5px;
+        }
+
+        .btn-rate {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: #000;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-rate:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        footer { text-align: center; padding: 4rem 2rem; color: var(--text-muted); font-size: 0.8rem; opacity: 0.7; }
 
         @keyframes heroFade {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 480px) {
-            .salon-name { font-size: 2rem; }
-            .category-header { height: 90px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 class="salon-name">Divine Beauty</h1>
+        <h1 class="salon-name">Studio Six</h1>
         <p class="tagline">The Art of Luxury Grooming</p>
         <div class="header-divider"></div>
     </header>
@@ -272,7 +283,7 @@
             <div class="category-header"><h2 class="category-title">Waxing</h2></div>
             <div class="category-content">
                 <ul class="service-list">
-                    <li class="service-item"><span class="service-name">Full Hand</span><span class="service-price">₹250</span></li>
+                    <li class="service-item"><span class="service-name">Full Hand Waxing</span><span class="service-price">₹250</span></li>
                     <li class="service-item"><span class="service-name">Full Leg Waxing</span><span class="service-price">₹450</span></li>
                     <li class="service-item"><span class="service-name">Face Waxing</span><span class="service-price">₹50</span></li>
                 </ul>
@@ -301,9 +312,21 @@
         </section>
     </main>
 
+    <section class="rate-us-container">
+        <div class="rate-card">
+            <h3 class="rate-title">Loved the Experience?</h3>
+            <div class="stars">★★★★★</div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Your 5-star review helps us grow and serve you better.</p>
+            
+            <a href="https://www.google.com/maps/place/Studio+6+Unisex+Salon/@32.220197,76.318283,15z/data=!4m2!3m1!1s0x0:0x99dd2e47aa6042cf?sa=X" target="_blank" class="btn-rate">
+                Rate Us on Google
+            </a>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2026 Divine Beauty Unisex Salon. All Rights Reserved.</p>
-        <p>Prices are subject to variation based on consultation.</p>
+        <p>© 2026 Studio Six Unisex Salon. All Rights Reserved.</p>
+        <p>Jawahar Nagar, Dharamshala, Himachal Pradesh</p>
     </footer>
 
     <script>
@@ -313,20 +336,14 @@
                 const content = category.querySelector('.category-content');
                 const isOpen = category.classList.contains('active');
 
-                // Close all other categories
+                // Close all other categories for a clean accordion effect
                 document.querySelectorAll('.category').forEach(cat => {
-                    if(cat !== category) {
-                        cat.classList.remove('active');
-                        cat.querySelector('.category-content').style.maxHeight = null;
-                    }
+                    cat.classList.remove('active');
+                    cat.querySelector('.category-content').style.maxHeight = null;
                 });
 
-                if (isOpen) {
-                    category.classList.remove('active');
-                    content.style.maxHeight = null;
-                } else {
+                if (!isOpen) {
                     category.classList.add('active');
-                    // Dynamic calculation for smooth movement
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
